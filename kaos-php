@@ -341,25 +341,6 @@ elseif game.PlaceId == 9625096419 then
     })
 
 	msc:AddToggle({
-		Name = "💀 Auto Rejoin",
-		Default = false,
-		Save = true,
-		Flag = "",
-		Callback = function(Value)
-			Chumanoid = game.Players.LocalPlayer.Character.Humanoid
-local teleportToPlace = game:GetService("TeleportService")
-while true do
-	wait()
-	if game.PlaceId == 9625096419 then
-	if Chumanoid.Health == 0 then
-		teleportToPlace:TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)   
-	end
-end
-end
-		end
-	})
-
-	msc:AddToggle({
 		Name = "💀 Auto Equip Best Pets",
 		Default = false,
 		Save = true,
