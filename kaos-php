@@ -34,8 +34,8 @@ local function Credits(Window)
 		PremiumOnly = false
 	})
 
-	Credits:AddLabel("<font color='rgb(124, 252, 0)'>kyo#2000 coded this while nutting</font>")
-    Credits:AddLabel("<font color='rgb(124, 252, 0)'>.gg/kaosgen</font>")
+	Credits:AddLabel("<font color='rgb(124, 252, 0)'>kyo#2000 coded this while nutting on Russo 😍</font>")
+    Credits:AddLabel("<font color='rgb(124, 252, 0)'>.gg/kaosgen 🏳‍🌈</font>")
     Credits:AddLabel("<font color='rgb(255, 0, 0)'>skids suck 💤</font>" )
 end
 
@@ -250,12 +250,31 @@ elseif game.PlaceId == 9625096419 then
 		PremiumOnly = false
 	})
 
+	local kaos = Main:AddSection({
+		Name = "Farm"
+	})
+
+	local FP = kaos:AddLabel("")
+    spawn(function()
+        while game:GetService("RunService").RenderStepped:wait() do
+            FP:Set("📊 FPS : "..tostring(game:GetService("Stats").Workspace.FPS:GetValueString()))
+        end
+    end)
+
+    local Time = kaos:AddLabel("")
+    spawn(function()
+        while task.wait() do
+            local Data = os.date("*t")
+            Time:Set("⌛ Time : "..Data.hour..":"..Data.min..":"..Data.sec)
+        end
+    end)
+
 	local Misc = Main:AddSection({
 		Name = "Farm"
 	})
 
 	Misc:AddToggle({
-		Name = "Auto Tap",
+		Name = "💢 Auto Tap",
 		Default = false,
 		Save = true,
 		Flag = "AutoTap",
@@ -269,7 +288,7 @@ elseif game.PlaceId == 9625096419 then
 
 
 	Misc:AddToggle({
-		Name = "Auto Rebirth",
+		Name = "🔓 Auto Rebirth",
 		Default = false,
 		Save = true,
 		Flag = "AutoRebirth",
@@ -300,7 +319,7 @@ elseif game.PlaceId == 9625096419 then
 	})
 
 	wheel:AddToggle({
-		Name = "Auto Claim Wheel",
+		Name = "🍀 Auto Claim Wheel",
 		Default = false,
 		Save = true,
 		Flag = "AutoClaimWheel",
@@ -322,7 +341,26 @@ elseif game.PlaceId == 9625096419 then
     })
 
 	msc:AddToggle({
-		Name = "Auto Equip Best Pets",
+		Name = "💀 Auto Rejoin",
+		Default = false,
+		Save = true,
+		Flag = "",
+		Callback = function(Value)
+			Chumanoid = game.Players.LocalPlayer.Character.Humanoid
+local teleportToPlace = game:GetService("TeleportService")
+while true do
+	wait()
+	if game.PlaceId == 9625096419 then
+	if Chumanoid.Health == 0 then
+		teleportToPlace:TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)   
+	end
+end
+end
+		end
+	})
+
+	msc:AddToggle({
+		Name = "💀 Auto Equip Best Pets",
 		Default = false,
 		Save = true,
 		Flag = "AutoEquip",
@@ -335,7 +373,7 @@ elseif game.PlaceId == 9625096419 then
 	})
 
     msc:AddToggle({
-		Name = "Remove Notifications",
+		Name = "🔈 Disable Notifications",
 		Default = false,
 		Save = true,
 		Flag = "RemoveNotif",
@@ -358,7 +396,7 @@ elseif game.PlaceId == 9625096419 then
     })
 
     Player:AddSlider({
-        Name = "Walk Speed",
+        Name = "⚡ Walk Speed",
         Min = 16,
         Max = 200,
         Default = 16,
@@ -411,7 +449,7 @@ elseif game.PlaceId == 9625096419 then
     local plr = game.Players.LocalPlayer
 
     Player:AddSlider({
-        Name = "Jump Power",
+        Name = "🌠 Jump Power",
         Min = 50,
         Max = 500,
         Default = 50,
@@ -469,10 +507,10 @@ elseif game.PlaceId == 9625096419 then
 
 
     Player:AddToggle({
-        Name = "Infinite Jumps",
+        Name = "💨 Infinite Jumps",
         Default = false,
         Callback = function(Value)
-            local InfiniteJumpEnabled = false
+            local InfiniteJumpEnabled = true
             game:GetService("UserInputService").JumpRequest:connect(function()
                 if InfiniteJumpEnabled then
                     game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
@@ -538,13 +576,35 @@ elseif game.PlaceId == 9625096419 then
     })
 
 	tps:AddButton({
-		Name = "Auto Unlock Islands",
+		Name = "🔑 Auto Unlock Islands",
 		Callback = function()
 			for i,v in pairs({{88, 735, -91}, {116, 1379, -117}, {-132, 2557, 351}, {-8, 4391, -68}, {1, 6982, -4}, {105, 10180, 215}}) do
 				Player.Character.HumanoidRootPart.CFrame = CFrame.new(unpack(v))
 				task.wait(1)
 			end
 		end    
+	})
+
+	tps:AddDropdown({
+		Name = "🌎 Select Area",
+		Default = "",
+		Options = {"Robotic Island", "Fantasy Island", "Monster Island", "Fairytale Island", "Candy Island", "Spiritual Island"},
+		Callback = function(State)
+			if State == "Robotic Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(128.245407, 658.084229, -82.3213348, 0.965929627, 0, 0.258804798, 0, 1, 0, -0.258804798, 0, 0.965929627)
+			elseif State == "Fantasy Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-127.863678, 2533.33423, 349.011719, 0.965929627, 0, 0.258804798, 0, 1, 0, -0.258804798, 0, 0.965929627)
+			elseif State == "Monster Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0.53401947, 4361.83447, -80.9817734, 0.90629667, 0, 0.422642082, 0, 1, 0, -0.422642082, 0, 0.90629667)
+			elseif State == "Fairytale Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(6.77987671, 6943.58447, -18.5770264, 0.90629667, 0, 0.422642082, 0, 1, 0, -0.422642082, 0, 0.90629667)
+			elseif State == "Candy Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(112.904884, 10134.334, 202.763229, 0.90629667, 0, 0.422642082, 0, 1, 0, -0.422642082, 0, 0.90629667)
+			elseif State == "Spiritual Island" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(166.158157, 1309.33423, -114.09169, 0.499959469, 0, 0.866048813, 0, 1, 0, -0.866048813, 0, 0.499959469)
+
+			end
+			end    
 	})
 
 
@@ -555,7 +615,7 @@ elseif game.PlaceId == 9625096419 then
     })
 
     sts:AddButton({
-        Name = "Destroy UI",
+        Name = "🚩 Destroy UI",
         Callback = function()
             OrionLib:Destroy()
           end    
